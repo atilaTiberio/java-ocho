@@ -2,10 +2,14 @@ package mx.horace.lambdas;
 
 public class Apple {
 
-    private int weight = 0;
+    private Integer weight = 0;
     private String color = "";
 
-    public Apple(int weight, String color) {
+    public Apple(){
+
+    }
+
+    public Apple(Integer weight, String color) {
         this.weight = weight;
         this.color = color;
     }
