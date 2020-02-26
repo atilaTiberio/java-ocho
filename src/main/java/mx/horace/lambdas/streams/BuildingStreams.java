@@ -74,9 +74,9 @@ public class BuildingStreams {
 
         System.out.println(salByEmp);
 
-       Map<Boolean,Map<Integer,List<Integer>>> resPartition=salariesEntities.stream()
+       Map<Boolean,Map<Integer,Set<Integer>>> resPartition=salariesEntities.stream()
                 .collect(partitioningBy((salariesEntity -> salariesEntity.getSalary()<=50000),
-                        groupingBy(SalariesEntity::getEmpNo,mapping(SalariesEntity::getEmpNo,toList()))
+                        groupingBy(SalariesEntity::getEmpNo,mapping(SalariesEntity::getSalary,toSet()))
         ));
         System.out.println(resPartition);
 
