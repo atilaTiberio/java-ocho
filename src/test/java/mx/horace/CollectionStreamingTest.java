@@ -90,8 +90,8 @@ public class CollectionStreamingTest {
         logger.info(salaryMaxByEmployeeNoReducing);
         logger.info(salaryMaxByEmployeeCollectingAndThen);
 
-        assertTrue(totalEmp==salarySumByEmployee.size());
-        assertTrue(salaryMaxByEmployee.equals(salaryMaxByEmployeeCollectingAndThen));
+        assertEquals(totalEmp.longValue(),salarySumByEmployee.size());
+        assertEquals(salaryMaxByEmployee,salaryMaxByEmployeeCollectingAndThen);
     }
 
     @Test
