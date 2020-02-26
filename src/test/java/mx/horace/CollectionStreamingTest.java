@@ -16,8 +16,8 @@ import java.util.*;
 
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.*;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = SpringJavaConfig.class)
@@ -102,9 +102,12 @@ public class CollectionStreamingTest {
                 .stream()
                 .collect(groupingBy(SalariesEntity::getEmpNo, summarizingInt(SalariesEntity::getSalary)));
 
-       logger.info(res);
+       List<SalariesEntity> top10=salariesRepository.findTop10BySalaryIsNotNull();
 
-        assertTrue(true);
+       assertNotNull(res);
+       assertThat(res.entrySet().stream().findAny().get().getValue(),instanceOf(IntSummaryStatistics.class));
+       assertEquals(10,top10.size());
+
     }
 
 
